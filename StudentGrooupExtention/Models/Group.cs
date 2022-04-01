@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
+
 namespace StudentGrooupExtention.Models
 {
     internal class Group
@@ -23,23 +24,31 @@ namespace StudentGrooupExtention.Models
         students arrayinin bir copy-ni yaradın onun üzərində sort əməliyyatı aparın və geriyə həmin copy olunmuş arrayi qaytarın.
 
         */
-        private string _no;
+        private static int _no = -1;
+
         public readonly string No;
         private Student[] students;
         private Student[] studentscopy;
-        public Group()
+        
+        public Group(string noinput)
         {
             students = new Student[0];
-            studentscopy = new Student[0];
-           // studentscopy.CopyTo(students, 0);
-           
+            No = noinput;
+            _no++;
+            string strword = No.Remove(2);
+            string strcopy = No.Replace('A', '0');
+            int numisstr = int.Parse(strcopy);
+            int num = (numisstr + _no);
+            No = strword + num.ToString();
+
         }
         public void AddStudent(Student student)
         {
             Array.Resize(ref students, students.Length + 1);
             students[students.Length - 1] = student;
+            Console.WriteLine($"{student.Name}  added to {No}.th group");   
+           studentscopy=students;
          
-            Console.WriteLine($"{student.Name}  added to {No}.th group");
         }
         public void GetAllStudents()
         {
@@ -52,11 +61,29 @@ namespace StudentGrooupExtention.Models
        
         public void Sort() 
         {
+           Student minstu=studentscopy[0];
+            for (int i = 0; i < studentscopy.Length; i++)
+            {
+                for (int j= i+1; j < studentscopy.Length; j++)
+                {
+                    if (studentscopy[i].Point > studentscopy[j].Point)
+                    {
+                        minstu = studentscopy[j];
+                        studentscopy[j] = studentscopy[i];
+                        studentscopy[i]=minstu;
+
+                    }
+
+                }
+
+            }
+            Console.WriteLine("Sort of students at min point to max point");
+            foreach (Student item in studentscopy) 
+            {
+            Console.Write($"\n{item.Name}\n{item.Surname}\n{item.Age}\n{item.Point}\n");   
+            }
 
         }
-        public void copy() 
-        {
-
-        }
+       
     }
 }
