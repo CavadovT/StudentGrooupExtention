@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace StudentGrooupExtention.Models
+namespace StudentGrooupExtentions.Models
 {
     internal class Student// hazirdi
     {
@@ -21,7 +21,7 @@ namespace StudentGrooupExtention.Models
             ps: Name, surname, point dəyərləri olmadan student obyekti yaratmaq olmaz
          
          */
-        private int _id;
+        private static int _id;
         public readonly int Id;
         public string Name { get; set; }
         public string Surname { get; set; }

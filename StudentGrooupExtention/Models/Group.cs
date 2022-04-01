@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 
 
-namespace StudentGrooupExtention.Models
+
+namespace StudentGrooupExtentions.Models
 {
     internal class Group
     {
@@ -30,58 +31,65 @@ namespace StudentGrooupExtention.Models
         private Student[] students;
         private Student[] studentscopy;
         
-        public Group(string noinput)
+        public Group()
         {
             students = new Student[0];
-            No = noinput;
+            No = "AP101";
             _no++;
-            string strword = No.Remove(2);
-            string strcopy = No.Replace('A', '0');
-            int numisstr = int.Parse(strcopy);
+            string strword = No.Remove(2);//AP
+            string strcopy1= No.Replace('A', '0');//0P101
+            string strcopy2 = strcopy1.Replace('P', '0');//00101
+            string strcopy = strcopy2;
+            int numisstr = int.Parse(strcopy);//101
             
-            No = strword + (numisstr+_no).ToString();
+            No = strword + (numisstr+_no).ToString();//AP101
 
         }
+
+        public object Extention { get; private set; }
+
         public void AddStudent(Student student)
         {
             Array.Resize(ref students, students.Length + 1);
             students[students.Length - 1] = student;
             Console.WriteLine($"{student.Name}  added to {No}.th group");   
            studentscopy=students;
+           
          
         }
         public void GetAllStudents()
         {
+            Console.WriteLine();
             foreach (Student item in students) 
             {
-            Console.Write($"\n{item.Name}\n{item.Surname}\n{item.Age}\n{item.Point}\n");
-           
+                Console.WriteLine($"ID:{item.Id} , NAME: {item.Name}  ,  SURNAME: {item.Surname}  ,  AGE: {item.Age}  ,  POINT: {item.Point}");
             }
+            Console.WriteLine();
         }
        
         public void Sort() 
         {
-           Student minstu=studentscopy[0];
+          Student minstu = studentscopy[0];
             for (int i = 0; i < studentscopy.Length; i++)
             {
-                for (int j= i+1; j < studentscopy.Length; j++)
+                for (int j = i + 1; j < studentscopy.Length; j++)
                 {
                     if (studentscopy[i].Point > studentscopy[j].Point)
                     {
                         minstu = studentscopy[j];
                         studentscopy[j] = studentscopy[i];
-                        studentscopy[i]=minstu;
-
+                        studentscopy[i] = minstu;
                     }
-
                 }
 
             }
+            Console.WriteLine();
             Console.WriteLine("Sort of students at min point to max point");
             foreach (Student item in studentscopy) 
             {
-            Console.Write($"\n{item.Name}\n{item.Surname}\n{item.Age}\n{item.Point}\n");   
+            Console.WriteLine($"ID:{item.Id} , NAME: {item.Name}  ,  SURNAME: {item.Surname}  ,  AGE: {item.Age}  ,  POINT: {item.Point}");   
             }
+            Console.WriteLine();
 
         }
        

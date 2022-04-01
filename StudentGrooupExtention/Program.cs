@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Text;
-using StudentGrooupExtention.Models;
+using StudentGrooupExtentions.Models;
 
-namespace StudentGrooupExtention
+namespace StudentGrooupExtentions
 {
     internal class Program
     {
@@ -23,14 +23,18 @@ namespace StudentGrooupExtention
                 Student s3 = new Student("Abbas", "Abbasov", 70);
                 Student s4 = new Student("Ageli", "Ageliyev", 80);
 
-                Group group = new Group("AA101");
+                Group group = new Group();
+                
                 group.AddStudent(s1);
                 group.AddStudent(s2);
                 group.AddStudent(s3);
                 group.AddStudent(s4);
-
+               
+               
                 group.GetAllStudents();
                 group.Sort();
+                Console.WriteLine("Press to enter for creat new qroup");
+                Console.WriteLine("Press to esc for exit");
 
             } while (Console.ReadKey().Key != ConsoleKey.Escape);
 
