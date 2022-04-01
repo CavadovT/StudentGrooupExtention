@@ -38,8 +38,8 @@ namespace StudentGrooupExtention.Models
             string strword = No.Remove(2);
             string strcopy = No.Replace('A', '0');
             int numisstr = int.Parse(strcopy);
-            int num = (numisstr + _no);
-            No = strword + num.ToString();
+            
+            No = strword + (numisstr+_no).ToString();
 
         }
         public void AddStudent(Student student)
